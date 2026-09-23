@@ -1,7 +1,7 @@
 // Osmo Supply — CSS Character Stagger, adapted to existing links and buttons.
 function initButtonCharacterStagger() {
   const offsetIncrement = 0.01;
-  document.querySelectorAll('a, button').forEach(control => {
+  document.querySelectorAll('a:not(.nav-dropdown__link), button').forEach(control => {
     if (control.classList.contains('btn-animate-chars')) return;
     control.classList.add('btn-animate-chars');
     // Keep an intact accessible name rather than announcing individual letters.

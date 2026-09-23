@@ -163,3 +163,7 @@
 @media(max-width:991px){.why-section{--nav-height:76px}.sticky-tab__content{grid-template-columns:35% 1fr 20px;gap:24px}.why-image-pair{margin-left:calc(35% + 24px)}.why-image-pair img{height:170px}}
 @media(max-width:600px){.why-section{padding:60px 24px 30px}.why-header{align-items:flex-start;flex-direction:column;margin-bottom:40px;gap:28px}.why-header h2{font-size:38px}.sticky-tab__inner{padding:24px 0}.sticky-tab__content{grid-template-columns:1fr 20px;gap:18px}.why-row-label{grid-column:1}.why-toggle{grid-column:2;grid-row:1}.sticky-tab__content>p{grid-column:1 / -1;grid-row:2;font-size:15px}.sticky-tab__title{font-size:23px}.why-expanded{padding:0 0 26px}.why-image-pair{margin-left:0;gap:12px}.why-image-pair img{height:160px}.why-number{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.why-details[open] .why-expanded{animation:none}.why-toggle::after{transition:none}}
+
+/* Mask only the space above each sticky row, never its text. */
+.why-section .sticky-tab-group__nav-bg{display:none}
+.why-section .sticky-tab__sticky::before{content:"";position:absolute;bottom:100%;left:0;width:100%;height:calc(var(--nav-height) + 2px);background:#fff;pointer-events:none}
