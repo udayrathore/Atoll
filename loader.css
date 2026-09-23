@@ -1,0 +1,67 @@
+.logo-loader {
+  position: fixed;
+  inset: 0%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  perspective: 40em;
+}
+
+.logo-loader__bg {
+  position: absolute;
+  inset: 0%;
+  z-index: 0;
+  background-color: #1945b5;
+  transform-origin: 50% 0%;
+}
+
+.logo-loader__stack {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 12em;
+  transform-style: preserve-3d;
+}
+
+.logo-loader__logo {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.logo-loader__logo-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.logo-loader__track {
+  position: absolute;
+  bottom: 3.5em;
+  left: 0%;
+  right: 0%;
+  z-index: 1;
+  width: 8em;
+  height: 0.25em;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  border-radius: 100em;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.logo-loader__bar {
+  position: absolute;
+  inset: 0%;
+  background-color: #ffffff;
+  transform-origin: 0% 50%;
+  transform: scaleX(0);
+}
+
+/* Hidden without JavaScript; activated before the first paint. */
+.logo-loader { display: none; }
+.loader-pending .logo-loader { display: flex; }
+[data-logo-loader-reset] { opacity: 0; }
+.logo-loader__stack { width: clamp(12rem, 22vw, 20rem); }
+.loader-pending body { overflow: hidden; }

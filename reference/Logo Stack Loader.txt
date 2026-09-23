@@ -1,0 +1,303 @@
+# Osmo Supply - Resource Context (Code): Logo Stack Loader
+
+## Instructions for AI
+
+You are receiving a production-ready resource from Osmo Supply. This resource has been professionally built, tested, and works exactly as intended. Follow these rules strictly:
+
+### Rules
+
+1. **Do not modify, refactor, or "improve" any code unless the user explicitly asks you to.**
+2. **Do not suggest structural changes, optimizations, or alternative approaches unprompted.**
+3. **Do not remove, rename, or restructure any `data-` attributes.** They are used for DOM targeting in JavaScript and are essential to how this resource works.
+4. **Respect the animation approach used.** Animations may be CSS-based, JavaScript-based (typically GSAP), or a combination. Do not convert between approaches unless the user asks.
+5. **Wait for the user to tell you what they want.** Your only job is to understand the code and respond to specific requests.
+
+### Response format
+
+After reading everything below, respond with:
+- A one-sentence summary of what this resource does.
+- Then ask the user these questions to understand what they need:
+
+1. **Are you integrating this into an existing project, and if so, what stack?**
+2. **Do you want to adjust any visual styling?**
+3. **Do you want to modify any animation behavior?**
+4. **Do you need to adapt the markup to fit your structure?**
+5. **Or is there something else entirely you'd like to do with this resource?**
+
+Wait for the user to respond before writing any code. Do not assume what they need.
+
+---
+
+## Dependencies (External Scripts)
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+
+---
+
+## HTML
+
+```html
+<div data-logo-loader-init aria-hidden="true" class="logo-loader">
+  <div data-logo-loader-bg class="logo-loader__bg"></div>
+  <div data-logo-loader-stack data-logo-loader-reset class="logo-loader__stack">
+    <div data-logo-loader-logo class="logo-loader__logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 156" fill="none" class="logo-loader__logo-svg">
+        <path d="M78.1189 156C104.864 156 128.46 142.594 142.542 122.162C150.631 142.968 171.556 156 199.261 156C219.221 156 236.057 149.64 246.874 139.183L245.315 152.771H279.112L287.201 82.4124L305.982 152.771H339.811L358.592 82.4124L366.676 152.771H400.473L396.853 121.273C410.857 142.204 434.75 156 461.881 156C505.024 156 540 121.128 540 78.1118C540 35.096 505.014 0.223607 461.871 0.223607C428.397 0.223607 399.852 21.2219 388.733 50.7173L383.272 3.22411H345.923L322.886 89.5314L299.849 3.22411H262.5L257.253 48.8556C256.617 35.5796 251.151 23.5516 241.721 14.8413C231.212 5.13257 216.53 0 199.256 0C183.072 0 169.126 4.59695 158.924 13.2968C151.403 19.7139 146.48 27.9977 144.576 37.1864C130.812 15.0025 106.205 0.223607 78.1189 0.223607C34.9757 0.223607 0 35.096 0 78.1118C0 121.128 34.9757 156 78.1189 156ZM461.871 35.2728C485.602 35.2728 504.837 54.451 504.837 78.1118C504.837 101.773 485.602 120.951 461.871 120.951C438.14 120.951 418.905 101.773 418.905 78.1118C418.905 54.451 438.14 35.2728 461.871 35.2728ZM199.261 32.6467C213.927 32.6467 222.929 39.4173 223.336 50.7589L223.461 54.2066H256.643L253.222 83.9932C251.521 81.2631 249.503 78.741 247.151 76.4478C239.411 68.9179 228.062 63.7905 213.411 61.2112L193.66 57.6855C180.574 55.335 177.893 51.2581 177.893 45.8603C177.893 44.5083 178.493 32.6415 199.261 32.6415V32.6467ZM185.08 90.4258L208.352 94.7784C223.378 97.6541 225.402 103.733 225.402 109.302C225.402 118.096 215.383 123.556 199.251 123.556C180.094 123.556 172.855 112.781 172.474 103.556L172.333 100.129H153.046C155.106 93.1455 156.233 85.7613 156.233 78.1118C156.233 77.7478 156.212 77.3838 156.207 77.0198C163.143 83.5876 172.829 88.1689 185.075 90.4258H185.08ZM78.1189 35.2728C101.85 35.2728 121.085 54.451 121.085 78.1118C121.085 101.773 101.85 120.951 78.1189 120.951C54.388 120.951 35.153 101.773 35.153 78.1118C35.153 54.451 54.388 35.2728 78.1189 35.2728Z" fill="currentColor"></path>
+      </svg>
+    </div>
+  </div>
+  <div data-logo-loader-track class="logo-loader__track">
+    <div data-logo-loader-bar class="logo-loader__bar"></div>
+  </div>
+</div>
+```
+
+---
+
+## CSS
+
+```css
+.logo-loader {
+  position: fixed;
+  inset: 0%;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  perspective: 40em;
+}
+
+.logo-loader__bg {
+  position: absolute;
+  inset: 0%;
+  z-index: 0;
+  background-color: #0a0a0a;
+  transform-origin: 50% 0%;
+}
+
+.logo-loader__stack {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 12em;
+  transform-style: preserve-3d;
+}
+
+.logo-loader__logo {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.logo-loader__logo-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.logo-loader__track {
+  position: absolute;
+  bottom: 3.5em;
+  left: 0%;
+  right: 0%;
+  z-index: 1;
+  width: 8em;
+  height: 0.25em;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  border-radius: 100em;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.logo-loader__bar {
+  position: absolute;
+  inset: 0%;
+  background-color: #ffffff;
+  transform-origin: 0% 50%;
+  transform: scaleX(0);
+}
+```
+
+---
+
+## JavaScript
+
+```js
+function initLogoStackLoader() {
+  const root = document.querySelector("[data-logo-loader-init]");
+  if (!root) return () => {};
+
+  const logoDuplicateCount = 5; // copies of the logo made behind the original
+
+  const bg = root.querySelector("[data-logo-loader-bg]");
+  const stack = root.querySelector("[data-logo-loader-stack]");
+  const logo = root.querySelector("[data-logo-loader-logo]");
+  const bar = root.querySelector("[data-logo-loader-bar]");
+  const track = root.querySelector("[data-logo-loader-track]") || bar;
+  if (!bg || !stack || !logo) return () => {};
+
+  const resetTargets = [...root.querySelectorAll("[data-logo-loader-reset]")].filter((element) => element !== stack);
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const logoDuplicates = [];
+  for (let i = 0; i < logoDuplicateCount; i += 1) {
+    const duplicate = logo.cloneNode(true);
+    duplicate.setAttribute("aria-hidden", "true");
+    stack.appendChild(duplicate);
+    logoDuplicates.push(duplicate);
+  }
+
+  const em = parseFloat(getComputedStyle(stack).fontSize);
+
+  const timeline = gsap.timeline({
+    defaults: {
+      duration: 0.4,
+      ease: "power2.out",
+    },
+  });
+
+  gsap.set(logoDuplicates, {
+    opacity: 0,
+    z: 0,
+  });
+
+  if (resetTargets.length) {
+    timeline.set(resetTargets, {
+      autoAlpha: 1,
+    }, 0);
+  }
+
+  timeline.to(stack, {
+    autoAlpha: 1,
+    duration: 0.5,
+  });
+
+  if (reduceMotion) {
+    timeline
+      .addLabel("impact", "+=0.6")
+      .to(root, {
+        autoAlpha: 0,
+        duration: 0.5,
+        ease: "power2.inOut",
+      }, "impact+=0.5");
+  } else {
+    timeline
+      .addLabel("tilt", "-=0.1")
+      .to(stack, {
+        rotationY: -40,
+        rotationX: 20,
+        xPercent: -15,
+        duration: 0.6,
+        ease: "power4.out",
+      }, "tilt")
+      .to(logoDuplicates, {
+        z: (i) => -(i + 1) * 2.5 * em,
+        opacity: (i) => Math.pow(0.5, i + 1),
+        duration: 0.55,
+        ease: "power4.out",
+        stagger: {
+          each: 0.05,
+          ease: "power1.out",
+        },
+      }, "tilt+=0.1")
+      .addLabel("smash", "+=0.4")
+      .to(stack, {
+        rotationY: 0,
+        rotationX: 0,
+        xPercent: 0,
+        ease: "power4.in",
+      }, "smash")
+      .to(logoDuplicates, {
+        z: 0,
+        ease: "power4.in",
+      }, "smash")
+      .addLabel("impact")
+      .set(logoDuplicates, {
+        opacity: 0,
+      }, "impact")
+      .to(stack, {
+        scale: 1.05,
+        duration: 0.1,
+      }, "impact")
+      .to(stack, {
+        scale: 1,
+        duration: 0.6,
+        ease: "elastic.out(1, 0.5)",
+      })
+      .to(stack, {
+        autoAlpha: 0,
+      }, "impact+=0.5")
+      .to(bg, {
+        scaleY: 0,
+        duration: 0.5,
+        ease: "expo.inOut",
+      }, "impact+=0.6");
+  }
+
+  if (bar) {
+    timeline
+      .to(bar, {
+        scaleX: 1,
+        duration: timeline.labels.impact,
+        ease: "power2.inOut",
+      }, 0)
+      .to(track, {
+        autoAlpha: 0,
+      }, "impact+=0.5");
+  }
+
+  timeline.set(root, {
+    display: "none",
+  });
+
+  return () => {
+    timeline.kill();
+    logoDuplicates.forEach((duplicate) => duplicate.remove());
+    gsap.set([root, bg, stack, logo, bar, track].filter(Boolean), {
+      clearProps: "all",
+    });
+  };
+}
+
+// Initialize Logo Stack Loader
+document.addEventListener("DOMContentLoaded", () => {
+  initLogoStackLoader();
+});
+```
+
+---
+
+## Documentation for Resource
+
+### Change logo
+
+Swap the SVG inside the element marked `[data-logo-loader-logo]` for your own, an inline SVG or an image both work. That's the only logo you place. The script duplicates it inside `[data-logo-loader-stack]` to build the stack.
+
+### Amount of duplicates
+
+`logoDuplicateCount` at the top of the script sets how many copies sit behind your logo, 5 by default. Each copy sits 2.5em further back and is half as visible as the one in front of it. Both of those live in the tween that fans them out, so tweak the depth and the opacity there.
+
+### Tilt
+
+The stack rotates -40 degrees on the Y axis and 20 on the X axis, and moves 15% to the left so the fanned out copies stay centred on the page. Those are the three values in the `tilt` tween. The `perspective` on `.logo-loader` sets how dramatic the depth looks, a lower value means more.
+
+### Background
+
+The background is its own element with `[data-logo-loader-bg]`, so we can animate it without moving the logo. At the end we scale it to 0 on the Y axis from the top, which reveals your page from the bottom up. Want it to slide or fade instead? That's the last tween in the timeline.
+
+### Progress bar
+
+This one is optional. Add an element with `[data-logo-loader-track]` and inside it a div with `[data-logo-loader-bar]`. The bar scales from 0 to 1 on the X axis and reaches the end exactly when the stack snaps back into one logo. Don't want a bar? Leave both elements out, the script checks for them.
+
+### Prevent FOUC
+
+Anything with `[data-logo-loader-reset]` starts at opacity 0 through the custom CSS, so nothing flashes before GSAP kicks in. The stack has it by default. Add it to anything else inside your loader that should only show up when the timeline starts, and the script sets those elements back to visible as its very first step.
+
+### Reduced motion
+
+If someone has reduced motion turned on, the stack doesn't tilt or fan out. The logo fades in, holds for a moment, and the whole loader fades out.
+
+### Webflow
+
+On the canvas the loader would cover everything, so the custom CSS hides it in the Designer with `.wf-design-mode .logo-loader { display: none; }`. Comment that rule out while you style the loader and put it back when you're done. It only applies inside the Designer.
